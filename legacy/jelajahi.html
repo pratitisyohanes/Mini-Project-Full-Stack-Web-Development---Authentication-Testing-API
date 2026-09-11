@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jelajahi semua telur segar di Elefez Farm — filter berdasarkan jenis, harga, lokasi peternak, dan rating pembeli." />
+  <title>Jelajahi Telur — Elefez Farm</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:        '#fffaf1',
+            bgmuted:   '#fbf1de',
+            surface:   '#ffffff',
+            line:      '#f0e2c6',
+            ink:       '#2c2013',
+            inksoft:   '#7a6a52',
+            primary:   '#d97a1f',
+            primarydk: '#b3620f',
+            primarysoft:'#fbe6c8',
+            yolk:      '#f5a623',
+            brown:     '#a45c28',
+            leaf:      '#6b8f3c',
+            cream:     '#f2d9a1',
+          },
+          fontFamily: {
+            sans: ['"Segoe UI"', 'system-ui', '-apple-system', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          borderRadius: { xl2: '22px' },
+          boxShadow: {
+            soft: '0 8px 24px rgba(44,32,19,.08)',
+            lift: '0 20px 48px rgba(44,32,19,.14)',
+          },
+          maxWidth: { shell: '1160px' },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-bg font-sans text-ink antialiased leading-relaxed">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white" href="#main">Lewati ke konten utama</a>
+
+  <header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
+    <div class="mx-auto flex max-w-shell items-center gap-4 px-5 py-3">
+      <a class="flex shrink-0 items-center gap-2.5" href="index.html" aria-label="Elefez Farm beranda">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary" aria-hidden="true">
+          <img src="assets/icons/logo.svg" alt="" width="24" height="24" />
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Elefez<span class="text-primary">Farm</span></span>
+      </a>
+
+      <nav class="ml-4 hidden lg:block" aria-label="Navigasi utama">
+        <ul class="flex items-center gap-1">
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html">Beranda</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="kategori.html">Kategori</a></li>
+          <li><a class="rounded-lg bg-primarysoft px-3 py-2 text-sm font-semibold text-primarydk" href="jelajahi.html" aria-current="page">Jelajahi</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html#keunggulan">Keunggulan</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html#peternak">Jadi Peternak</a></li>
+        </ul>
+      </nav>
+
+      <form class="relative ml-auto hidden max-w-sm flex-1 md:block" role="search" action="jelajahi.html">
+        <label class="sr-only" for="search-header">Cari telur</label>
+        <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 opacity-60" aria-hidden="true">
+          <img src="assets/icons/search.svg" alt="" width="18" height="18" />
+        </span>
+        <input class="w-full rounded-full border border-line bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-inksoft focus:border-primary focus:ring-4 focus:ring-primarysoft"
+               id="search-header" type="search" name="q" placeholder="Cari telur kampung, negeri, omega…" />
+      </form>
+
+      <div class="ml-auto flex items-center gap-2 md:ml-0">
+        <a class="hidden rounded-full border border-line px-4 py-2 text-sm font-semibold transition hover:border-primary hover:text-primarydk sm:inline-block" href="#">Masuk</a>
+        <a class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-primarydk" href="#">Daftar</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="border-b border-line bg-gradient-to-b from-primarysoft/60 to-bg">
+      <div class="mx-auto max-w-shell px-5 py-10 md:py-14">
+        <nav class="mb-5 text-sm text-inksoft" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2">
+            <li><a class="transition hover:text-primarydk" href="index.html">Beranda</a></li>
+            <li aria-hidden="true">/</li>
+            <li class="font-semibold text-ink" aria-current="page">Jelajahi</li>
+          </ol>
+        </nav>
+
+        <h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Jelajahi telur segar</h1>
+        <p class="mt-3 max-w-2xl text-lg text-inksoft">
+          7.980 produk dari 640 peternak mitra. Saring sesuai jenis, harga, dan lokasi pengiriman.
+        </p>
+
+        <form class="relative mt-7 max-w-2xl" role="search" action="jelajahi.html">
+          <label class="sr-only" for="search-page">Cari telur</label>
+          <span class="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 opacity-60" aria-hidden="true">
+            <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+          </span>
+          <input class="w-full rounded-full border border-line bg-white py-4 pl-14 pr-32 outline-none transition placeholder:text-inksoft focus:border-primary focus:ring-4 focus:ring-primarysoft"
+                 id="search-page" type="search" name="q" placeholder="Mau cari telur apa hari ini?" />
+          <button class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-primary px-6 py-2.5 font-semibold text-white transition hover:bg-primarydk" type="submit">Cari</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="mx-auto grid max-w-shell gap-8 px-5 py-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:py-14">
+
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class="rounded-xl2 border border-line bg-surface p-6 shadow-soft">
+          <div class="mb-5 flex items-center justify-between">
+            <h2 class="text-lg font-bold">Filter</h2>
+            <button class="text-sm font-semibold text-primarydk transition hover:underline" type="button">Reset</button>
+          </div>
+
+          <fieldset class="border-t border-line pt-5">
+            <legend class="mb-3 text-sm font-bold uppercase tracking-wide">Jenis telur</legend>
+            <div class="space-y-2.5 text-sm">
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="kampung" checked />
+                <span class="flex-1">Telur Kampung</span>
+                <span class="text-inksoft">1.180</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="negeri" />
+                <span class="flex-1">Telur Negeri</span>
+                <span class="text-inksoft">2.640</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="omega" />
+                <span class="flex-1">Telur Omega-3</span>
+                <span class="text-inksoft">760</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="asin" />
+                <span class="flex-1">Telur Asin</span>
+                <span class="text-inksoft">920</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="puyuh" />
+                <span class="flex-1">Telur Puyuh</span>
+                <span class="text-inksoft">540</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" name="jenis" value="organik" />
+                <span class="flex-1">Telur Organik</span>
+                <span class="text-inksoft">310</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="mt-6 border-t border-line pt-5">
+            <legend class="mb-3 text-sm font-bold uppercase tracking-wide">Rentang harga</legend>
+            <div class="flex items-center gap-2">
+              <label class="sr-only" for="harga-min">Harga minimum</label>
+              <input class="w-full rounded-lg border border-line bg-bg px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primarysoft"
+                     id="harga-min" type="number" min="0" placeholder="Rp min" />
+              <span class="text-inksoft" aria-hidden="true">—</span>
+              <label class="sr-only" for="harga-max">Harga maksimum</label>
+              <input class="w-full rounded-lg border border-line bg-bg px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primarysoft"
+                     id="harga-max" type="number" min="0" placeholder="Rp max" />
+            </div>
+          </fieldset>
+
+          <fieldset class="mt-6 border-t border-line pt-5">
+            <legend class="mb-3 text-sm font-bold uppercase tracking-wide">Lokasi peternak</legend>
+            <label class="sr-only" for="lokasi">Pilih lokasi</label>
+            <select class="w-full rounded-lg border border-line bg-bg px-3 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primarysoft" id="lokasi">
+              <option>Semua lokasi</option>
+              <option>Jabodetabek</option>
+              <option>Jawa Barat</option>
+              <option>Jawa Tengah</option>
+              <option>Jawa Timur</option>
+              <option>Yogyakarta</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="mt-6 border-t border-line pt-5">
+            <legend class="mb-3 text-sm font-bold uppercase tracking-wide">Rating minimum</legend>
+            <div class="space-y-2.5 text-sm">
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="radio" name="rating" value="4.5" checked />
+                <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                <span class="text-inksoft">4,5 ke atas</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="radio" name="rating" value="4" />
+                <span class="text-yolk" aria-hidden="true">★★★★☆</span>
+                <span class="text-inksoft">4,0 ke atas</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="radio" name="rating" value="0" />
+                <span class="text-inksoft">Semua rating</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="mt-6 border-t border-line pt-5">
+            <legend class="mb-3 text-sm font-bold uppercase tracking-wide">Pengiriman</legend>
+            <div class="space-y-2.5 text-sm">
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" checked />
+                <span>Kirim hari ini (same-day)</span>
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input class="h-4 w-4 accent-primary" type="checkbox" />
+                <span>Gratis ongkir</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button class="mt-7 w-full rounded-full bg-primary px-5 py-3 font-semibold text-white shadow-soft transition hover:bg-primarydk" type="button">
+            Terapkan filter
+          </button>
+        </div>
+      </aside>
+
+      <section aria-label="Hasil produk">
+        <div class="mb-5 flex flex-col gap-4 rounded-xl2 border border-line bg-surface px-5 py-4 shadow-soft sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-sm text-inksoft">
+            Menampilkan <span class="font-bold text-ink">1–8</span> dari <span class="font-bold text-ink">7.980</span> produk
+          </p>
+          <div class="flex items-center gap-2">
+            <label class="text-sm text-inksoft" for="urutkan">Urutkan</label>
+            <select class="rounded-lg border border-line bg-bg px-3 py-2 text-sm font-semibold outline-none focus:border-primary focus:ring-2 focus:ring-primarysoft" id="urutkan">
+              <option>Paling relevan</option>
+              <option>Terlaris</option>
+              <option>Harga terendah</option>
+              <option>Harga tertinggi</option>
+              <option>Rating tertinggi</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="mb-6 flex flex-wrap items-center gap-2">
+          <li class="text-sm text-inksoft">Filter aktif:</li>
+          <li>
+            <button class="flex items-center gap-2 rounded-full bg-primarysoft px-3 py-1.5 text-sm font-semibold text-primarydk transition hover:bg-primary hover:text-white" type="button">
+              Telur Kampung <span aria-hidden="true">×</span><span class="sr-only">Hapus filter</span>
+            </button>
+          </li>
+          <li>
+            <button class="flex items-center gap-2 rounded-full bg-primarysoft px-3 py-1.5 text-sm font-semibold text-primarydk transition hover:bg-primary hover:text-white" type="button">
+              Kirim hari ini <span aria-hidden="true">×</span><span class="sr-only">Hapus filter</span>
+            </button>
+          </li>
+          <li>
+            <button class="flex items-center gap-2 rounded-full bg-primarysoft px-3 py-1.5 text-sm font-semibold text-primarydk transition hover:bg-primary hover:text-white" type="button">
+              Rating 4,5+ <span aria-hidden="true">×</span><span class="sr-only">Hapus filter</span>
+            </button>
+          </li>
+        </ul>
+
+        <ul class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative aspect-[4/3] bg-bgmuted">
+                <img class="h-full w-full object-cover" src="assets/images/kampung-egg.png" alt="Telur ayam kampung asli" loading="lazy" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Kampung</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Ayam Kampung Asli (10 butir)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Kandang Bu Sari · Yogyakarta</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 4,8 dari 5</span>
+                  <span class="text-inksoft">4,8 (268)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp42.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative aspect-[4/3] bg-bgmuted">
+                <img class="h-full w-full object-cover" src="assets/images/omega-egg.png" alt="Telur omega-3 premium satu tray" loading="lazy" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Omega-3</span>
+                <span class="absolute right-3 top-3 rounded-full bg-leaf px-3 py-1 text-xs font-bold text-white">Terlaris</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Omega-3 Premium (1 tray)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Farm Hijau Lestari · Bogor</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 4,7 dari 5</span>
+                  <span class="text-inksoft">4,7 (134)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp75.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-cream to-bgmuted">
+                <img src="assets/icons/carton.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Negeri</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Negeri Grade A (1 tray)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Peternakan Sumber Rejeki · Blitar</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 5 dari 5</span>
+                  <span class="text-inksoft">5,0 (410)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp58.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-brown/25 to-bgmuted">
+                <img src="assets/icons/salted-egg.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Asin</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Asin Brebes Matang (isi 6)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh UMKM Telur Asin Brebes · Brebes</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 4,9 dari 5</span>
+                  <span class="text-inksoft">4,9 (192)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp39.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-cream to-bgmuted">
+                <img src="assets/icons/quail.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Puyuh</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Puyuh Segar (isi 30)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Puyuh Makmur Jaya · Sukabumi</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★☆</span>
+                  <span class="sr-only">Rating 4,6 dari 5</span>
+                  <span class="text-inksoft">4,6 (98)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp24.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-leaf/25 to-bgmuted">
+                <img src="assets/icons/organic-leaf.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Organik</span>
+                <span class="absolute right-3 top-3 rounded-full bg-leaf px-3 py-1 text-xs font-bold text-white">Bersertifikat</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Organik Ayam Umbaran (isi 12)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Kebun Telur Organik · Salatiga</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 4,9 dari 5</span>
+                  <span class="text-inksoft">4,9 (77)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp68.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-primarysoft to-bgmuted">
+                <img src="assets/icons/hen.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Telur Bebek</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Telur Bebek Mentah Pilihan (isi 10)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Peternakan Bebek Sido Rukun · Sidoarjo</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★☆</span>
+                  <span class="sr-only">Rating 4,5 dari 5</span>
+                  <span class="text-inksoft">4,5 (61)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <span class="text-lg font-extrabold">Rp45.000</span>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative grid aspect-[4/3] place-items-center bg-gradient-to-br from-cream to-bgmuted">
+                <img src="assets/icons/truck.svg" alt="" width="56" height="56" class="opacity-70" />
+                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primarydk">Paket Grosir</span>
+                <span class="absolute right-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">Hemat 12%</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="font-bold leading-snug">Paket Grosir Telur Negeri (5 tray)</h3>
+                <p class="mt-1 text-sm text-inksoft">oleh Grosir Telur Nusantara · Bekasi</p>
+                <p class="mt-2 flex items-center gap-2 text-sm">
+                  <span class="text-yolk" aria-hidden="true">★★★★★</span>
+                  <span class="sr-only">Rating 4,8 dari 5</span>
+                  <span class="text-inksoft">4,8 (325)</span>
+                </p>
+                <div class="mt-auto flex items-center justify-between pt-5">
+                  <div>
+                    <span class="block text-xs text-inksoft line-through">Rp290.000</span>
+                    <span class="text-lg font-extrabold">Rp255.000</span>
+                  </div>
+                  <button class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primarydk" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+
+        <nav class="mt-10 flex items-center justify-center gap-2" aria-label="Navigasi halaman">
+          <a class="grid h-10 min-w-10 place-items-center rounded-full border border-line bg-surface px-4 text-sm font-semibold text-inksoft transition hover:border-primary hover:text-primarydk" href="#" aria-label="Halaman sebelumnya">←</a>
+          <a class="grid h-10 min-w-10 place-items-center rounded-full bg-primary px-4 text-sm font-semibold text-white" href="#" aria-current="page">1</a>
+          <a class="grid h-10 min-w-10 place-items-center rounded-full border border-line bg-surface px-4 text-sm font-semibold transition hover:border-primary hover:text-primarydk" href="#">2</a>
+          <a class="grid h-10 min-w-10 place-items-center rounded-full border border-line bg-surface px-4 text-sm font-semibold transition hover:border-primary hover:text-primarydk" href="#">3</a>
+          <span class="px-2 text-inksoft" aria-hidden="true">…</span>
+          <a class="grid h-10 min-w-10 place-items-center rounded-full border border-line bg-surface px-4 text-sm font-semibold transition hover:border-primary hover:text-primarydk" href="#">42</a>
+          <a class="grid h-10 min-w-10 place-items-center rounded-full border border-line bg-surface px-4 text-sm font-semibold text-inksoft transition hover:border-primary hover:text-primarydk" href="#" aria-label="Halaman berikutnya">→</a>
+        </nav>
+      </section>
+    </div>
+
+    <section class="border-t border-line bg-bgmuted">
+      <div class="mx-auto flex max-w-shell flex-col items-center gap-6 px-5 py-14 text-center md:flex-row md:text-left">
+        <div class="flex-1">
+          <h2 class="text-2xl font-extrabold tracking-tight">Dapatkan info stok segar tiap minggu</h2>
+          <p class="mt-2 text-inksoft">Berlangganan untuk info panen &amp; promo eksklusif langsung ke email kamu.</p>
+        </div>
+        <form class="flex w-full max-w-md gap-2" action="#">
+          <label class="sr-only" for="newsletter-email">Alamat email</label>
+          <input class="w-full rounded-full border border-line bg-surface px-5 py-3 outline-none transition placeholder:text-inksoft focus:border-primary focus:ring-4 focus:ring-primarysoft"
+                 id="newsletter-email" type="email" name="email" placeholder="nama@email.com" required />
+          <button class="shrink-0 rounded-full bg-primary px-6 py-3 font-semibold text-white transition hover:bg-primarydk" type="submit">Berlangganan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-bg">
+    <div class="mx-auto grid max-w-shell gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a class="flex items-center gap-2.5" href="index.html" aria-label="Elefez Farm beranda">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary" aria-hidden="true">
+            <img src="assets/icons/logo.svg" alt="" width="24" height="24" />
+          </span>
+          <span class="text-xl font-extrabold tracking-tight">Elefez<span class="text-primary">Farm</span></span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm text-inksoft">Marketplace telur ayam segar untuk peternak dan pembeli.</p>
+      </div>
+
+      <nav aria-label="Produk">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Produk</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="kategori.html">Kategori</a></li>
+          <li><a class="transition hover:text-primarydk" href="jelajahi.html">Jelajahi</a></li>
+          <li><a class="transition hover:text-primarydk" href="index.html#peternak">Jadi Peternak</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Perusahaan">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Perusahaan</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="#">Tentang Kami</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Karier</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Blog</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Bantuan">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Bantuan</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="#">Pusat Bantuan</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Syarat &amp; Ketentuan</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Kebijakan Privasi</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-shell flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row">
+        <p class="text-sm text-inksoft">© 2026 Elefez Farm. Seluruh hak cipta dilindungi.</p>
+        <ul class="flex items-center gap-3">
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="Instagram">
+            <img src="assets/icons/instagram.svg" alt="" width="18" height="18" />
+          </a></li>
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="Twitter X">
+            <img src="assets/icons/twitter.svg" alt="" width="18" height="18" />
+          </a></li>
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="LinkedIn">
+            <img src="assets/icons/linkedin.svg" alt="" width="18" height="18" />
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

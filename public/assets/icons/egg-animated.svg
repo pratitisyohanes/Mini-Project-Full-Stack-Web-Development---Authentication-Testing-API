@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+  <style>
+    .egg-wobble {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: egg-wobble 2.6s ease-in-out infinite;
+    }
+    .egg-shine {
+      animation: egg-shine 2.6s ease-in-out infinite;
+    }
+    .egg-shadow {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: egg-shadow 2.6s ease-in-out infinite;
+    }
+    @keyframes egg-wobble {
+      0%, 100% { transform: rotate(-6deg); }
+      50%      { transform: rotate(6deg); }
+    }
+    @keyframes egg-shine {
+      0%, 100% { opacity: .55; }
+      50%      { opacity: .9; }
+    }
+    @keyframes egg-shadow {
+      0%, 100% { transform: scaleX(1);   opacity: .35; }
+      50%      { transform: scaleX(.82); opacity: .2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .egg-wobble, .egg-shine, .egg-shadow { animation: none; }
+    }
+  </style>
+
+  <ellipse class="egg-shadow" cx="100" cy="222" rx="52" ry="11" fill="#a45c28" />
+
+  <g class="egg-wobble">
+    <path d="M100 30
+             C142 30 168 96 168 148
+             C168 190 138 214 100 214
+             C62 214 32 190 32 148
+             C32 96 58 30 100 30Z"
+          fill="#fdf3df" stroke="#e8cf9c" stroke-width="3" />
+    <ellipse class="egg-shine" cx="76" cy="88" rx="16" ry="24" fill="#ffffff" opacity=".7" transform="rotate(-18 76 88)" />
+  </g>
+</svg>

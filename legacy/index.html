@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elefez Farm — Marketplace Telur Ayam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ 
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Elefez Farm beranda">
+        <span class="logo-mark" aria-hidden="true">
+          <img src="assets/icons/egg-animated.svg" alt="egg-animated" width="24" height="24" />
+        </span>
+        <span class="logo-text">Elefez<span class="logo-accent">Farm</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi utama">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="nav-link" href="kategori.html">Kategori</a></li>
+          <li><a class="nav-link" href="jelajahi.html">Jelajahi</a></li>
+          <li><a class="nav-link" href="#keunggulan">Keunggulan</a></li>
+          <li><a class="nav-link" href="#peternak">Jadi Peternak</a></li>
+        </ul>
+      </nav>
+
+      <form class="search search--header" role="search" action="jelajahi.html">
+        <label class="visually-hidden" for="search-header">Cari telur</label>
+        <span class="search-icon" aria-hidden="true">
+          <img src="assets/icons/search.svg" alt="" width="18" height="18" />
+        </span>
+        <input class="search-input" id="search-header" type="search" name="q" placeholder="Cari telur kampung, negeri, omega…" />
+      </form>
+
+      <div class="header-actions">
+        <a class="btn btn--ghost" href="#">Masuk</a>
+        <a class="btn btn--primary" href="#">Daftar</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Marketplace untuk Menjual Telur Ayam</p>
+          <h1 class="hero-title">Telur fresh dari kandang langsung ke dapurmu</h1>
+          <p class="hero-subtitle">
+            Telur ayam kampung, negeri, omega-3 diambil langsung dari peternakan terbaik
+          </p>
+
+          <form class="search search--hero" role="search" action="jelajahi.html">
+            <label class="visually-hidden" for="search-hero">Cari telur</label>
+            <span class="search-icon" aria-hidden="true">
+              <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+            </span>
+            <input class="search-input" id="search-hero" type="search" name="q" placeholder="Mau cari telur apa hari ini?" />
+            <button class="btn btn--primary search-submit" type="submit">Cari</button>
+          </form>
+
+          <dl class="hero-stats">
+            <div class="hero-stat">
+              <dt class="hero-stat-label">Butir terjual</dt>
+              <dd class="hero-stat-value">230.000+</dd>
+            </div>
+            <div class="hero-stat">
+              <dt class="hero-stat-label">Peternak mitra</dt>
+              <dd class="hero-stat-value">200+</dd>
+            </div>
+            <div class="hero-stat">
+              <dt class="hero-stat-label">Rating pembeli</dt>
+              <dd class="hero-stat-value">4,9 / 5</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-card hero-card--front">
+            <div class="thumb thumb--omega">
+              <img class="thumb-photo" src="assets/images/omega-egg.png" alt="" />
+            </div>
+            <div class="hero-card-body">
+              <p class="hero-card-title">Telur Omega-3</p>
+              <p class="hero-card-meta">1 baki = 30 butir</p>
+              <p class="hero-card-price">Rp62.000</p>
+            </div>
+          </div>
+
+          <div class="hero-card hero-card--back">
+            <div class="thumb thumb--kampung">
+              <img class="thumb-photo" src="assets/images/kampung-egg.png" alt="" />
+            </div>
+            <div class="hero-card-body">
+              <p class="hero-card-title">Telur Ayam Kampung</p>
+              <p class="hero-card-price">Rp32.000 / 10 butir</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kategori">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title">Cek Jenis Telur</h2>
+          <p class="section-subtitle">Temukan telur yang di inginkan</p>
+        </header>
+
+        <ul class="category-grid">
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=kampung">
+              <span class="category-card-icon category-card-icon--kampung" aria-hidden="true">
+                <img src="assets/icons/hen.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Ayam Kampung</span>
+              <span class="category-card-count">900 produk</span>
+            </a>
+          </li>
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=negeri">
+              <span class="category-card-icon category-card-icon--negeri" aria-hidden="true">
+                <img src="assets/icons/carton.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Ayam Negeri</span>
+              <span class="category-card-count">1.200 produk</span>
+            </a>
+          </li>
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=omega">
+              <span class="category-card-icon category-card-icon--omega" aria-hidden="true">
+                <img src="assets/icons/omega.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Omega-3</span>
+              <span class="category-card-count">700 produk</span>
+            </a>
+          </li>
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=asin">
+              <span class="category-card-icon category-card-icon--asin" aria-hidden="true">
+                <img src="assets/icons/salted-egg.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Asin</span>
+              <span class="category-card-count">400 produk</span>
+            </a>
+          </li>
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=puyuh">
+              <span class="category-card-icon category-card-icon--puyuh" aria-hidden="true">
+                <img src="assets/icons/quail.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Puyuh</span>
+              <span class="category-card-count">300 produk</span>
+            </a>
+          </li>
+          <li>
+            <a class="category-card" href="jelajahi.html?kategori=organik">
+              <span class="category-card-icon category-card-icon--organik" aria-hidden="true">
+                <img src="assets/icons/organic-leaf.svg" alt="" width="24" height="24" />
+              </span>
+              <span class="category-card-name">Telur Organik</span>
+              <span class="category-card-count">100 produk</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="produk">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <h2 class="section-title">Telur yang paling laris saat ini</h2>
+            <p class="section-subtitle">Pilihan dari pembeli yang terbaik</p>
+          </div>
+          <a class="btn btn--ghost" href="jelajahi.html">Lihat semua pilihan</a>
+        </header>
+
+        <ul class="product-grid">
+          <li>
+            <article class="product-card">
+              <div class="product-card-media thumb thumb--negeri">
+                <span class="product-card-tag">Telur Ayam Negeri</span>
+              </div>
+              <div class="product-card-body">
+                <h3 class="product-card-title">Telur Ayam Negeri Terbaik 1 Baki</h3>
+                <p class="product-card-author">dari kandang Elefez</p>
+                <p class="product-card-rating">
+                  <span class="stars" aria-hidden="true">★★★★★</span>
+                  <span class="visually-hidden">Rating 4 dari 5</span>
+                  <span class="product-card-rating-count">100</span>
+                </p>
+                <div class="product-card-footer">
+                  <span class="product-card-price">Rp42.000</span>
+                  <button class="btn btn--primary btn--sm" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <div class="product-card-media thumb thumb--kampung">
+                <span class="product-card-tag">Telur Ayam Kampung</span>
+              </div>
+              <div class="product-card-body">
+                <h3 class="product-card-title">Telur Ayam Kampung 10 butir</h3>
+                <p class="product-card-author">dari kandang Elefez</p>
+                <p class="product-card-rating">
+                  <span class="stars" aria-hidden="true">★★★★★</span>
+                  <span class="visually-hidden">Rating 4 dari 5</span>
+                  <span class="product-card-rating-count">100</span>
+                </p>
+                <div class="product-card-footer">
+                  <span class="product-card-price">Rp32.000</span>
+                  <button class="btn btn--primary btn--sm" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <div class="product-card-media thumb thumb--asin">
+                <span class="product-card-tag">Telur Asin</span>
+              </div>
+              <div class="product-card-body">
+                <h3 class="product-card-title">Telur Asin dari Bebek Pilihan</h3>
+                <p class="product-card-author">dari kandang Elefez</p>
+                <p class="product-card-rating">
+                  <span class="stars" aria-hidden="true">★★★★★</span>
+                  <span class="visually-hidden">Rating 4 dari 5</span>
+                  <span class="product-card-rating-count">100</span>
+                </p>
+                <div class="product-card-footer">
+                  <span class="product-card-price">Rp22.000</span>
+                  <button class="btn btn--primary btn--sm" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <div class="product-card-media thumb thumb--omega">
+                <span class="product-card-tag">Telur Ayam Omega-3</span>
+              </div>
+              <div class="product-card-body">
+                <h3 class="product-card-title">Telur Omega-3 Terbaik</h3>
+                <p class="product-card-author">dari kandang Elefez</p>
+                <p class="product-card-rating">
+                  <span class="stars" aria-hidden="true">★★★★★</span>
+                  <span class="visually-hidden">Rating 4 dari 5</span>
+                  <span class="product-card-rating-count">100</span>
+                </p>
+                <div class="product-card-footer">
+                  <span class="product-card-price">Rp52.000</span>
+                  <button class="btn btn--primary btn--sm" type="button">Beli</button>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="keunggulan">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title">Telur setiap hari berasal dari kandang jadi fresh untuk di nikmati</h2>
+          <p class="section-subtitle">Fresh dan Ayam dan Bebek juga terjaga kualitasnya</p>
+        </header>
+
+        <ul class="feature-grid">
+          <li>
+            <article class="feature-card">
+              <span class="feature-card-icon" aria-hidden="true">
+                <img src="assets/icons/shield-check.svg" alt="" width="26" height="26" />
+              </span>
+              <h3 class="feature-card-title">Telur disortir setiap hari dari kandang</h3>
+              <p class="feature-card-text">Ayam dan bebek diberikan vitamin dan nutrisi yang terbaik setiap hari</p>
+            </article>
+          </li>
+          <li>
+            <article class="feature-card">
+              <span class="feature-card-icon" aria-hidden="true">
+                <img src="assets/icons/truck.svg" alt="" width="26" height="26" />
+              </span>
+              <h3 class="feature-card-title">Pengiriman Sameday</h3>
+              <p class="feature-card-text">Setelah melewati proses sortir akan dikirim menggunakan jasa kirim kandang</p>
+            </article>
+          </li>
+          <li>
+            <article class="feature-card">
+              <span class="feature-card-icon" aria-hidden="true">
+                <img src="assets/icons/star.svg" alt="" width="26" height="26" />
+              </span>
+              <h3 class="feature-card-title">Dari bibit DOC terbaik untuk menghasilkan telur yang terbaik</h3>
+              <p class="feature-card-text">Menggunakan Konsentrat pilihan</p>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="peternak">
+      <div class="container">
+        <div class="seller">
+          <div class="seller-content">
+            <h2 class="seller-title">Mulai berjualan telur sebagai mitra kami</h2>
+            <p class="seller-text">
+              Daftarkan sebagai canvas telur, &amp; cukup fokus mencari mitra untuk membeli produk
+            </p>
+            <ul class="seller-list">
+              <li class="seller-item">
+                <span class="seller-check" aria-hidden="true">✓</span> Upload &amp; kelola stok telur
+              </li>
+              <li class="seller-item">
+                <span class="seller-check" aria-hidden="true">✓</span> Laporan penjualan &amp; fokus meningkatkan pendapatan
+              </li>
+              <li class="seller-item">
+                <span class="seller-check" aria-hidden="true">✓</span> Tanpa perlu banyak modal &amp; kualitas telur terjamin
+              </li>
+            </ul>
+            <a class="btn btn--primary btn--lg" href="#">Jadi canvas telur kami</a>
+          </div>
+
+          <div class="seller-media" aria-hidden="true">
+            <div class="seller-stat-card">
+              <p class="seller-stat-label">Penjualan bulan ini</p>
+              <p class="seller-stat-value">Rp5.500.000</p>
+              <div class="seller-bars">
+                <span style="height: 40%"></span>
+                <span style="height: 65%"></span>
+                <span style="height: 50%"></span>
+                <span style="height: 85%"></span>
+                <span style="height: 70%"></span>
+                <span style="height: 100%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="testimoni">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title">Menurut mereka tentang kandang Elefez</h2>
+          <p class="section-subtitle">Dipercaya oleh banyak orang</p>
+        </header>
+
+        <ul class="testimonial-grid">
+          <li>
+            <article class="testimonial-card">
+              <p class="testimonial-card-quote">Warna telurnya bagus, cangkahnya tidak mudah pecah bagus tidak berbintik-bintik</p>
+              <footer class="testimonial-card-author">
+                <span class="avatar" aria-hidden="true">MS</span>
+                <span>
+                  <span class="testimonial-card-name">Melanie Sepang</span>
+                  <span class="testimonial-card-role">Mahasiswi</span>
+                </span>
+              </footer>
+            </article>
+          </li>
+          <li>
+            <article class="testimonial-card">
+              <p class="testimonial-card-quote">Pengiriman telurnya cepat tidak menunggu lama dan telurnya masih fresh juga</p>
+              <footer class="testimonial-card-author">
+                <span class="avatar" aria-hidden="true">PE</span>
+                <span>
+                  <span class="testimonial-card-name">Pulsen E.</span>
+                  <span class="testimonial-card-role">Pendeta</span>
+                </span>
+              </footer>
+            </article>
+          </li>
+          <li>
+            <article class="testimonial-card">
+              <p class="testimonial-card-quote">untuk kebutuhan partai banyak bisa untuk acara syukuran</p>
+              <footer class="testimonial-card-author">
+                <span class="avatar" aria-hidden="true">AS</span>
+                <span>
+                  <span class="testimonial-card-name">Anreas S.</span>
+                  <span class="testimonial-card-role">Karyawan Swasta</span>
+                </span>
+              </footer>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="newsletter">
+          <div class="newsletter-content">
+            <h2 class="newsletter-title">Berlangganan untuk mendapatkan info stok telur terupdate</h2>
+            <p class="newsletter-text">Dapatkan info terupdate mengenai stok telur &amp; terupdate hanya untuk member</p>
+          </div>
+          <form class="newsletter-form" action="#">
+            <label class="visually-hidden" for="newsletter-email">Masukkan email</label>
+            <input class="newsletter-input" id="newsletter-email" type="email" name="email" placeholder="namakamu@email.com" required />
+            <button class="btn btn--primary" type="submit">Berlangganan sekarang</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="logo logo--footer" href="index.html" aria-label="Elefez Farm beranda">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="assets/icons/logo.svg" alt="" width="24" height="24" />
+          </span>
+          <span class="logo-text">Elefez<span class="logo-accent">Farm</span></span>
+        </a>
+        <p class="footer-tagline">Menjual Telur Fresh setiap hari dari kandang langsung</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Produk">
+        <h2 class="footer-heading">Produk</h2>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="kategori.html">Kategori</a></li>
+          <li><a class="footer-link" href="jelajahi.html">Jelajahi</a></li>
+          <li><a class="footer-link" href="#peternak">Menjadi Mitra Kami</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Perusahaan">
+        <h2 class="footer-heading">Perusahaan</h2>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="#">Tentang Kami</a></li>
+          <li><a class="footer-link" href="#">Karier</a></li>
+          <li><a class="footer-link" href="#">Blog</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Bantuan">
+        <h2 class="footer-heading">Bantuan</h2>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="#">Pusat Bantuan</a></li>
+          <li><a class="footer-link" href="#">Syarat &amp; Ketentuan</a></li>
+          <li><a class="footer-link" href="#">Kebijakan Privasi</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">© Kandang Elefez</p>
+        <ul class="footer-social">
+          <li><a class="footer-social-link" href="#" aria-label="Instagram">
+            <img src="assets/icons/instagram.svg" alt="instagram" width="20" height="20" />
+          </a></li>
+          <li><a class="footer-social-link" href="#" aria-label="Twitter X">
+            <img src="assets/icons/twitter.svg" alt="twitter" width="20" height="20" />
+          </a></li>
+          <li><a class="footer-social-link" href="#" aria-label="LinkedIn">
+            <img src="assets/icons/linkedin.svg" alt="linkedin" width="20" height="20" />
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

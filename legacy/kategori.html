@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Semua kategori telur di Elefez Farm — telur kampung, negeri, omega-3, asin, puyuh, organik, bebek, hingga telur olahan siap masak." />
+  <title>Kategori Telur — Elefez Farm</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:        '#fffaf1',
+            bgmuted:   '#fbf1de',
+            surface:   '#ffffff',
+            line:      '#f0e2c6',
+            ink:       '#2c2013',
+            inksoft:   '#7a6a52',
+            primary:   '#d97a1f',
+            primarydk: '#b3620f',
+            primarysoft:'#fbe6c8',
+            yolk:      '#f5a623',
+            brown:     '#a45c28',
+            leaf:      '#6b8f3c',
+            cream:     '#f2d9a1',
+          },
+          fontFamily: {
+            sans: ['"Segoe UI"', 'system-ui', '-apple-system', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          borderRadius: { xl2: '22px' },
+          boxShadow: {
+            soft: '0 8px 24px rgba(44,32,19,.08)',
+            lift: '0 20px 48px rgba(44,32,19,.14)',
+          },
+          maxWidth: { shell: '1160px' },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-bg font-sans text-ink antialiased leading-relaxed">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white" href="#main">Lewati ke konten utama</a>
+
+  <header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
+    <div class="mx-auto flex max-w-shell items-center gap-4 px-5 py-3">
+      <a class="flex shrink-0 items-center gap-2.5" href="index.html" aria-label="Elefez Farm beranda">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary" aria-hidden="true">
+          <img src="assets/icons/logo.svg" alt="" width="24" height="24" />
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Elefez<span class="text-primary">Farm</span></span>
+      </a>
+
+      <nav class="ml-4 hidden lg:block" aria-label="Navigasi utama">
+        <ul class="flex items-center gap-1">
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html">Beranda</a></li>
+          <li><a class="rounded-lg bg-primarysoft px-3 py-2 text-sm font-semibold text-primarydk" href="kategori.html" aria-current="page">Kategori</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="jelajahi.html">Jelajahi</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html#keunggulan">Keunggulan</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-inksoft transition hover:bg-primarysoft hover:text-primarydk" href="index.html#peternak">Jadi Peternak</a></li>
+        </ul>
+      </nav>
+
+      <form class="relative ml-auto hidden max-w-sm flex-1 md:block" role="search" action="jelajahi.html">
+        <label class="sr-only" for="search-header">Cari telur</label>
+        <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 opacity-60" aria-hidden="true">
+          <img src="assets/icons/search.svg" alt="" width="18" height="18" />
+        </span>
+        <input class="w-full rounded-full border border-line bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-inksoft focus:border-primary focus:ring-4 focus:ring-primarysoft"
+               id="search-header" type="search" name="q" placeholder="Cari telur kampung, negeri, omega…" />
+      </form>
+
+      <div class="ml-auto flex items-center gap-2 md:ml-0">
+        <a class="hidden rounded-full border border-line px-4 py-2 text-sm font-semibold transition hover:border-primary hover:text-primarydk sm:inline-block" href="#">Masuk</a>
+        <a class="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-primarydk" href="#">Daftar</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="border-b border-line bg-gradient-to-b from-primarysoft/60 to-bg">
+      <div class="mx-auto max-w-shell px-5 py-14 md:py-20">
+        <nav class="mb-5 text-sm text-inksoft" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2">
+            <li><a class="transition hover:text-primarydk" href="index.html">Beranda</a></li>
+            <li aria-hidden="true">/</li>
+            <li class="font-semibold text-ink" aria-current="page">Kategori</li>
+          </ol>
+        </nav>
+
+        <p class="mb-3 inline-block rounded-full bg-primarysoft px-3 py-1 text-xs font-bold uppercase tracking-wide text-primarydk">Semua Kategori</p>
+        <h1 class="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
+          Pilih jenis telur sesuai kebutuhan dapurmu
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-inksoft">
+          Dari telur negeri harian sampai telur organik premium — semuanya dikurasi langsung dari peternak mitra Elefez Farm.
+        </p>
+
+        <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+          <div>
+            <dt class="text-sm text-inksoft">Total kategori</dt>
+            <dd class="text-2xl font-extrabold">10</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-inksoft">Produk aktif</dt>
+            <dd class="text-2xl font-extrabold">7.980+</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-inksoft">Peternak mitra</dt>
+            <dd class="text-2xl font-extrabold">640+</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-shell px-5 py-14 md:py-20">
+      <header class="mb-8 max-w-2xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">Kategori utama</h2>
+        <p class="mt-2 text-inksoft">Enam jenis telur paling banyak dicari pembeli minggu ini.</p>
+      </header>
+
+      <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=kampung">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-primarysoft" aria-hidden="true">
+              <img src="assets/icons/hen.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Kampung</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Kuning pekat, aroma khas — favorit untuk jamu dan masakan rumahan.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              1.180 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=negeri">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-cream/70" aria-hidden="true">
+              <img src="assets/icons/carton.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Negeri</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Stok paling stabil dan harga paling ramah untuk kebutuhan harian.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              2.640 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=omega">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-yolk/20" aria-hidden="true">
+              <img src="assets/icons/omega.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Omega-3</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Diperkaya asam lemak omega-3, cocok untuk anak dan lansia.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              760 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=asin">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-brown/15" aria-hidden="true">
+              <img src="assets/icons/salted-egg.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Asin</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Matang siap santap dari sentra Brebes, tersedia mentah maupun rebus.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              920 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=puyuh">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-cream/70" aria-hidden="true">
+              <img src="assets/icons/quail.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Puyuh</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Ukuran mungil untuk sate telur, semur, dan bekal anak sekolah.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              540 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+
+        <li>
+          <a class="group flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-soft transition duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lift" href="jelajahi.html?kategori=organik">
+            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-leaf/15" aria-hidden="true">
+              <img src="assets/icons/organic-leaf.svg" alt="" width="26" height="26" />
+            </span>
+            <h3 class="mt-5 text-lg font-bold">Telur Organik</h3>
+            <p class="mt-1.5 text-sm text-inksoft">Ayam umbaran dengan pakan bebas antibiotik dan bersertifikat.</p>
+            <p class="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm font-semibold text-primarydk">
+              310 produk
+              <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="border-y border-line bg-bgmuted">
+      <div class="mx-auto max-w-shell px-5 py-14 md:py-20">
+        <header class="mb-8 max-w-2xl">
+          <h2 class="text-3xl font-extrabold tracking-tight">Kategori lainnya</h2>
+          <p class="mt-2 text-inksoft">Kebutuhan lebih spesifik? Mulai dari telur bebek sampai paket usaha kuliner.</p>
+        </header>
+
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <li>
+            <a class="flex h-full items-center gap-3 rounded-xl2 border border-line bg-surface px-5 py-4 transition hover:border-primary hover:shadow-soft" href="jelajahi.html?kategori=bebek">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primarysoft" aria-hidden="true">
+                <img src="assets/icons/hen.svg" alt="" width="22" height="22" />
+              </span>
+              <span>
+                <span class="block font-bold">Telur Bebek</span>
+                <span class="block text-sm text-inksoft">380 produk</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="flex h-full items-center gap-3 rounded-xl2 border border-line bg-surface px-5 py-4 transition hover:border-primary hover:shadow-soft" href="jelajahi.html?kategori=tetas">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cream/70" aria-hidden="true">
+                <img src="assets/icons/carton.svg" alt="" width="22" height="22" />
+              </span>
+              <span>
+                <span class="block font-bold">Telur Tetas</span>
+                <span class="block text-sm text-inksoft">140 produk</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="flex h-full items-center gap-3 rounded-xl2 border border-line bg-surface px-5 py-4 transition hover:border-primary hover:shadow-soft" href="jelajahi.html?kategori=olahan">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-yolk/20" aria-hidden="true">
+                <img src="assets/icons/salted-egg.svg" alt="" width="22" height="22" />
+              </span>
+              <span>
+                <span class="block font-bold">Telur Olahan</span>
+                <span class="block text-sm text-inksoft">210 produk</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="flex h-full items-center gap-3 rounded-xl2 border border-line bg-surface px-5 py-4 transition hover:border-primary hover:shadow-soft" href="jelajahi.html?kategori=grosir">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-leaf/15" aria-hidden="true">
+                <img src="assets/icons/truck.svg" alt="" width="22" height="22" />
+              </span>
+              <span>
+                <span class="block font-bold">Paket Grosir</span>
+                <span class="block text-sm text-inksoft">900 produk</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-shell px-5 py-14 md:py-20">
+      <div class="grid items-center gap-8 rounded-xl2 border border-line bg-surface p-6 shadow-soft md:grid-cols-2 md:p-10">
+        <div>
+          <p class="mb-3 inline-block rounded-full bg-leaf/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-leaf">Sorotan minggu ini</p>
+          <h2 class="text-3xl font-extrabold tracking-tight">Telur Omega-3 Premium</h2>
+          <p class="mt-3 text-inksoft">
+            Ayam petelur dengan pakan tambahan biji rami dan minyak ikan. Kandungan omega-3 hingga 3x lipat
+            dibanding telur biasa, tanpa aroma amis.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex items-start gap-2"><span class="font-bold text-leaf" aria-hidden="true">✓</span> Panen harian, dikirim maksimal 24 jam</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-leaf" aria-hidden="true">✓</span> Sortir ukuran seragam grade A</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-leaf" aria-hidden="true">✓</span> Kemasan tray anti-pecah bersertifikat</li>
+          </ul>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a class="rounded-full bg-primary px-6 py-3 font-semibold text-white shadow-soft transition hover:bg-primarydk" href="jelajahi.html?kategori=omega">Lihat produk omega-3</a>
+            <a class="rounded-full border border-line px-6 py-3 font-semibold transition hover:border-primary hover:text-primarydk" href="jelajahi.html">Jelajahi semua</a>
+          </div>
+        </div>
+
+        <div class="overflow-hidden rounded-xl2 border border-line bg-bgmuted">
+          <img class="h-full w-full object-cover" src="assets/images/omega-egg.png" alt="Sekeranjang telur omega-3 premium" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-shell px-5 pb-16 md:pb-24">
+      <div class="flex flex-col items-center gap-6 rounded-xl2 bg-ink px-6 py-12 text-center text-white md:px-12">
+        <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight">Punya kandang sendiri? Buka kategorimu di Elefez Farm</h2>
+        <p class="max-w-xl text-white/70">
+          Daftarkan produk telurmu, tentukan harga per tray atau per kilo, dan jangkau ribuan pembeli setiap hari.
+        </p>
+        <a class="rounded-full bg-primary px-7 py-3 font-semibold text-white transition hover:bg-primarydk" href="index.html#peternak">Jadi peternak mitra</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-bgmuted">
+    <div class="mx-auto grid max-w-shell gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a class="flex items-center gap-2.5" href="index.html" aria-label="Elefez Farm beranda">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary" aria-hidden="true">
+            <img src="assets/icons/logo.svg" alt="" width="24" height="24" />
+          </span>
+          <span class="text-xl font-extrabold tracking-tight">Elefez<span class="text-primary">Farm</span></span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm text-inksoft">Marketplace telur ayam segar untuk peternak dan pembeli.</p>
+      </div>
+
+      <nav aria-label="Produk">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Produk</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="kategori.html">Kategori</a></li>
+          <li><a class="transition hover:text-primarydk" href="jelajahi.html">Jelajahi</a></li>
+          <li><a class="transition hover:text-primarydk" href="index.html#peternak">Jadi Peternak</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Perusahaan">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Perusahaan</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="#">Tentang Kami</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Karier</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Blog</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Bantuan">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-wide">Bantuan</h2>
+        <ul class="space-y-2.5 text-sm text-inksoft">
+          <li><a class="transition hover:text-primarydk" href="#">Pusat Bantuan</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Syarat &amp; Ketentuan</a></li>
+          <li><a class="transition hover:text-primarydk" href="#">Kebijakan Privasi</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-shell flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row">
+        <p class="text-sm text-inksoft">© 2026 Elefez Farm. Seluruh hak cipta dilindungi.</p>
+        <ul class="flex items-center gap-3">
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="Instagram">
+            <img src="assets/icons/instagram.svg" alt="" width="18" height="18" />
+          </a></li>
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="Twitter X">
+            <img src="assets/icons/twitter.svg" alt="" width="18" height="18" />
+          </a></li>
+          <li><a class="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface transition hover:border-primary" href="#" aria-label="LinkedIn">
+            <img src="assets/icons/linkedin.svg" alt="" width="18" height="18" />
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
