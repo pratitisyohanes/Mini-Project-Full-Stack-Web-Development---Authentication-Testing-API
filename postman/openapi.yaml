@@ -1,0 +1,720 @@
+openapi: 3.0.3
+info:
+  title: Product API - Elefez Farm
+  version: 1.0.0
+  description: |
+    Dokumentasi REST API marketplace telur Elefez Farm (Node.js, Express, MySQL).
+
+    **Authentication.** Endpoint bertanda gembok membutuhkan header
+    `Authorization: Bearer <token>`. Token didapat dari `POST /auth/login` dan
+    berlaku sesuai `JWT_EXPIRES_IN` (default 1 hari).
+
+    **Otorisasi.** Membuat produk hanya untuk role `seller`. Mengubah dan
+    menghapus produk hanya untuk `seller` pemilik produk atau `admin`.
+
+    **Format response.** Sukses: `{ success: true, message, data }`.
+    Gagal: `{ success: false, message }`, ditambah `errors` per field untuk
+    kegagalan validasi (422).
+servers:
+  - url: http://localhost:4000/api
+    description: Server lokal (PORT default di server/.env.example)
+tags:
+  - name: Auth
+    description: Registrasi dan login
+  - name: Products
+    description: CRUD produk
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Registrasi user baru
+      description: >
+        Password disimpan sebagai hash bcryptjs. Response tidak pernah memuat
+        `password_hash`. Jika `role` tidak dikirim, user menjadi `buyer`.
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            example:
+              full_name: Postman Tester
+              username: tester_01
+              email: tester_01@example.com
+              password: Password123!
+              role: seller
+              city: Jakarta
+      responses:
+        '201':
+          description: Registrasi berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                success: true
+                message: Registrasi berhasil
+                data:
+                  id: 13
+                  full_name: Postman Tester
+                  username: tester_01
+                  email: tester_01@example.com
+                  role: seller
+                  city: Jakarta
+        '422':
+          description: Field wajib kosong, role tidak valid, atau username/email sudah dipakai
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+              examples:
+                fieldKosong:
+                  summary: Body kosong
+                  value:
+                    success: false
+                    message: Validasi gagal
+                    errors:
+                      full_name: [Full name wajib diisi]
+                      username: [Username wajib diisi]
+                      email: [Email wajib diisi]
+                      password: [Password wajib diisi]
+                duplikat:
+                  summary: Username atau email sudah dipakai
+                  value:
+                    success: false
+                    message: Validasi gagal
+                    errors:
+                      username: [Username atau email sudah digunakan]
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login dan dapatkan JWT
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              username: tester_01
+              password: Password123!
+      responses:
+        '200':
+          description: Login berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              example:
+                success: true
+                message: Login berhasil
+                data:
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.contoh.token
+                  user:
+                    id: 13
+                    full_name: Postman Tester
+                    username: tester_01
+                    role: seller
+        '401':
+          description: Username tidak ditemukan atau password salah
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                success: false
+                message: Username atau password salah
+        '422':
+          description: Username atau password tidak dikirim
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+              example:
+                success: false
+                message: Validasi gagal
+                errors:
+                  username: [Username wajib diisi]
+                  password: [Password wajib diisi]
+  /products:
+    get:
+      tags: [Products]
+      summary: Daftar produk
+      description: Publik, tidak butuh token. Semua query parameter opsional.
+      operationId: listProducts
+      parameters:
+        - name: search
+          in: query
+          description: Cari berdasarkan potongan nama produk
+          schema:
+            type: string
+          example: telur
+        - name: category_id
+          in: query
+          description: Filter berdasarkan id kategori
+          schema:
+            type: integer
+        - name: min_price
+          in: query
+          description: Harga minimal
+          schema:
+            type: number
+        - name: max_price
+          in: query
+          description: Harga maksimal
+          schema:
+            type: number
+        - name: sort_by
+          in: query
+          description: Kolom pengurutan. Nilai lain diabaikan dan memakai `created_at`.
+          schema:
+            type: string
+            enum: [price, rating, review_count, created_at, name]
+            default: created_at
+        - name: order
+          in: query
+          description: Arah pengurutan
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Data produk berhasil diambil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+              example:
+                success: true
+                message: Data produk berhasil diambil
+                data:
+                  - id: 1
+                    name: Telur Ayam Negeri Grade A 1 kg
+                    description: Isi 15-16 butir, disortir ukuran seragam dan dicuci kering.
+                    price: 29000
+                    stock: 120
+                    image: null
+                    rating: 4.7
+                    review_count: 212
+                    status: active
+                    created_at: '2026-07-06T01:00:00.000Z'
+                    category:
+                      id: 1
+                      name: Telur Ayam Negeri
+                    seller:
+                      id: 2
+                      name: Budi Santoso
+                    rating_class: Regular
+    post:
+      tags: [Products]
+      summary: Tambah produk
+      description: Butuh token dengan role `seller`. Produk otomatis menjadi milik user yang login.
+      operationId: createProduct
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+            example:
+              name: Telur Ayam Negeri Test Postman
+              description: Produk dibuat untuk keperluan testing.
+              price: 32000
+              rating: 4.5
+              category_id: 1
+              stock: 50
+              status: active
+      responses:
+        '201':
+          description: Produk berhasil ditambahkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+              example:
+                success: true
+                message: Produk berhasil ditambahkan
+                data:
+                  id: 16
+                  name: Telur Ayam Negeri Test Postman
+                  description: Produk dibuat untuk keperluan testing.
+                  price: 32000
+                  stock: 50
+                  image: null
+                  rating: 4.5
+                  review_count: 0
+                  status: active
+                  created_at: '2026-09-30T03:00:00.000Z'
+                  category:
+                    id: 1
+                    name: Telur Ayam Negeri
+                  seller:
+                    id: 13
+                    name: Postman Tester
+                  rating_class: Regular
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ProductValidationError'
+  /products/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Id produk
+        schema:
+          type: integer
+        example: 1
+    get:
+      tags: [Products]
+      summary: Detail produk
+      description: Publik, tidak butuh token.
+      operationId: getProduct
+      responses:
+        '200':
+          description: Detail produk berhasil diambil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+              example:
+                success: true
+                message: Detail produk berhasil diambil
+                data:
+                  id: 1
+                  name: Telur Ayam Negeri Grade A 1 kg
+                  description: Isi 15-16 butir, disortir ukuran seragam dan dicuci kering.
+                  price: 29000
+                  stock: 120
+                  image: null
+                  rating: 4.7
+                  review_count: 212
+                  status: active
+                  created_at: '2026-07-06T01:00:00.000Z'
+                  category:
+                    id: 1
+                    name: Telur Ayam Negeri
+                  seller:
+                    id: 2
+                    name: Budi Santoso
+                  rating_class: Regular
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Products]
+      summary: Ubah produk (PUT)
+      description: >
+        Butuh token. Hanya `seller` pemilik produk atau `admin`. Semua field
+        wajib dikirim ulang.
+      operationId: replaceProduct
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+            example:
+              name: Telur Ayam Negeri Test Postman (Updated)
+              description: Stock diperbarui.
+              price: 35000
+              rating: 4.6
+              category_id: 1
+              stock: 35
+              status: active
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductUpdated'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ProductValidationError'
+    patch:
+      tags: [Products]
+      summary: Ubah produk (PATCH)
+      description: >
+        Alias dari PUT dan memakai validasi yang sama: semua field wajib tetap
+        harus dikirim. Body parsial dibalas 422.
+      operationId: updateProduct
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+            example:
+              name: Telur Ayam Negeri Test Postman (Updated)
+              description: Stock diperbarui lewat request PATCH.
+              price: 35000
+              rating: 4.6
+              category_id: 1
+              stock: 35
+              status: active
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductUpdated'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ProductValidationError'
+    delete:
+      tags: [Products]
+      summary: Hapus produk
+      description: Butuh token. Hanya `seller` pemilik produk atau `admin`.
+      operationId: deleteProduct
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Produk berhasil dihapus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+              example:
+                success: true
+                message: Produk berhasil dihapus
+                data: null
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Produk sudah punya transaksi sehingga tidak bisa dihapus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                success: false
+                message: Data tidak bisa dihapus karena masih dipakai data lain
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token dari `POST /auth/login`
+  responses:
+    Unauthorized:
+      description: Token tidak dikirim, tidak valid, atau kadaluarsa
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            tanpaToken:
+              summary: Header Authorization tidak ada
+              value:
+                success: false
+                message: Token tidak ditemukan
+            tokenInvalid:
+              summary: Token salah atau kadaluarsa
+              value:
+                success: false
+                message: Token tidak valid atau kadaluarsa
+    Forbidden:
+      description: Role tidak diizinkan, atau bukan pemilik produk
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Anda tidak memiliki akses untuk mengubah data ini
+    NotFound:
+      description: Produk tidak ditemukan
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Data tidak ditemukan
+    ProductValidationError:
+      description: Body tidak lolos validasi, atau `category_id` tidak ada di database
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          examples:
+            bodyKosong:
+              summary: Body kosong
+              value:
+                success: false
+                message: Validasi gagal
+                errors:
+                  name: [Name wajib diisi dan harus berupa string]
+                  description: [Description wajib diisi dan harus berupa string]
+                  price: [Price wajib diisi dan harus berupa angka]
+                  rating: [Rating wajib diisi dan harus berupa angka]
+                  category_id: [Category id wajib diisi dan harus berupa integer]
+                  stock: [Stock wajib diisi dan harus berupa integer]
+            kategoriTidakAda:
+              summary: category_id tidak ditemukan
+              value:
+                success: false
+                message: Validasi gagal
+                errors:
+                  category_id: [Kategori tidak ditemukan]
+    ProductUpdated:
+      description: Produk berhasil diperbarui
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductResponse'
+          example:
+            success: true
+            message: Produk berhasil diperbarui
+            data:
+              id: 16
+              name: Telur Ayam Negeri Test Postman (Updated)
+              description: Stock diperbarui lewat request PATCH.
+              price: 35000
+              stock: 35
+              image: null
+              rating: 4.6
+              review_count: 0
+              status: active
+              created_at: '2026-09-30T03:00:00.000Z'
+              category:
+                id: 1
+                name: Telur Ayam Negeri
+              seller:
+                id: 13
+                name: Postman Tester
+              rating_class: Regular
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [full_name, username, email, password]
+      properties:
+        full_name:
+          type: string
+          maxLength: 100
+        username:
+          type: string
+          maxLength: 50
+          description: Harus unik
+        email:
+          type: string
+          maxLength: 100
+          description: Harus unik
+        password:
+          type: string
+          description: Disimpan sebagai hash bcryptjs
+        phone:
+          type: string
+          maxLength: 20
+        city:
+          type: string
+          maxLength: 60
+        role:
+          type: string
+          enum: [admin, seller, buyer]
+          default: buyer
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    ProductRequest:
+      type: object
+      required: [name, description, price, rating, category_id, stock]
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        price:
+          type: number
+          minimum: 0
+        rating:
+          type: number
+          minimum: 0
+          maximum: 10
+        category_id:
+          type: integer
+          description: Harus id kategori yang ada
+        stock:
+          type: integer
+          minimum: 0
+        image:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        full_name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [admin, seller, buyer]
+        city:
+          type: string
+          nullable: true
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+        stock:
+          type: integer
+        image:
+          type: string
+          nullable: true
+        rating:
+          type: number
+        review_count:
+          type: integer
+        status:
+          type: string
+          enum: [active, inactive]
+        created_at:
+          type: string
+          format: date-time
+        category:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        seller:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        rating_class:
+          type: string
+          enum: [Top Rated, Popular, Regular]
+          description: Top Rated jika rating >= 8.5, Popular jika >= 7, selain itu Regular
+    UserResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/User'
+    LoginResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+              description: JWT, kirim sebagai Bearer Token
+            user:
+              type: object
+              properties:
+                id:
+                  type: integer
+                full_name:
+                  type: string
+                username:
+                  type: string
+                role:
+                  type: string
+                  enum: [admin, seller, buyer]
+    ProductResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Product'
+    ProductListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    EmptyResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          nullable: true
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+    ValidationError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          description: Pesan error per nama field
+          additionalProperties:
+            type: array
+            items:
+              type: string

@@ -6,14 +6,14 @@ export function requireAuth(req, res, next) {
   const [scheme, token] = header.split(' ')
 
   if (scheme !== 'Bearer' || !token) {
-    return next(new AppError(403, 'Anda tidak memiliki akses untuk mengubah data ini'))
+    return next(new AppError(401, 'Token tidak ditemukan'))
   }
 
   try {
     req.user = verifyToken(token)
     next()
   } catch {
-    next(new AppError(403, 'Anda tidak memiliki akses untuk mengubah data ini'))
+    next(new AppError(401, 'Token tidak valid atau kadaluarsa'))
   }
 }
 
